@@ -12,7 +12,9 @@
           </tr>
         </thead>
         <tbody *ngFor="let movies of moviesList;">
-          <tr *ngFor="let repo of movies;" (click)="movieSelect(this.repo)">
+         
+          <tr *ngFor="let repo of movies;" (click)="movieSelect(this.repo)"
+            [ngClass]="this.service.movieSelected == this.repo.id ? 'table-dark' : ''">
             <td>{{repo.id}}</td>
             <td>{{repo.title}}</td>
             <td>{{repo.summary}}</td>
@@ -32,7 +34,8 @@
           </tr>
         </thead>
         <tbody *ngFor="let actors of actorsList;">
-          <tr *ngFor="let rep of actors;" (click)="actorSelect(this.rep.id)">
+          <tr *ngFor="let rep of actors;" (click)="actorSelect(this.rep.id)"
+            [ngClass]="this.service.actorSelected == this.rep.id ? 'table-dark' : ''">
             <td>{{rep.id}}</td>
             <td>{{rep.name}}</td>
             <td>{{rep.dateOfBirth | date}}</td>
@@ -48,8 +51,10 @@
         </div>
         <div class="form-group">
           <p>selectedmovie:{{selectedmoviename}}</p>
+
           <p>selectedactor:{{selectedactorname}}</p>
-          <p><button type="submit" class="btn btn-dark">Cast Actor</button></p>
+          <button type="submit" class="btn btn-dark"
+          [ngClass]="this.disabledButton()? '' : 'disabled'">Cast Actor</button>
           
         </div>
       </form>

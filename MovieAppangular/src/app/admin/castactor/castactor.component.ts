@@ -47,7 +47,7 @@ console.log(this.service.movieSelected = movie.id);
     //console.log(this.service.actorSelected);
   }
   actorSelect(name) {
-    this.service.actorSelected = name;
+    this.service.actorSelected = name.id;
     this.selectedactorname = name.name;
     //this.selectedactorname=People.name;
   
@@ -58,6 +58,16 @@ console.log(this.service.movieSelected = movie.id);
 
   onSubmit(form: NgForm) {
     this.insertRecord(form);
+  }
+  disabledButton= (): boolean => {
+    if ( this.service.movieSelected != undefined && this.service.actorSelected != undefined) 
+    {
+      return true
+    }
+    else
+    {
+      return false
+    }
   }
 
   insertRecord(form: NgForm) {
